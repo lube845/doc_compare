@@ -198,3 +198,7 @@ Docker Compose 用简短的 `.env` 变量名（`OCR_PROVIDER`、`MAX_UPLOAD_SIZE
 | [`docs/compare_current_state.md`](docs/compare_current_state.md) | PDF 比对现状笔记 |
 | [`docs/compare_decisions.md`](docs/compare_decisions.md) | 关键决定与理由 |
 | [`docs/compare_baseline.md`](docs/compare_baseline.md) | 比对基线与指标 |
+
+## 许可证
+
+本项目采用 [Apache License 2.0](LICENSE) 开源协议。

@@ -206,3 +206,7 @@ the full names above. See [`.env.example`](.env.example) for the complete list.
 | [`docs/compare_current_state.md`](docs/compare_current_state.md) | Notes on the current comparison state |
 | [`docs/compare_decisions.md`](docs/compare_decisions.md) | Key decisions and their reasons |
 | [`docs/compare_baseline.md`](docs/compare_baseline.md) | Comparison baseline and metrics |
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
