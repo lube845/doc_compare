@@ -41,9 +41,25 @@ which row, which cell** changed — with the anchor to the original text kept in
 
 ## 建议的 GitHub Topics
 
+GitHub 最多 20 个 topic，每个只能是小写字母、数字和连字符。建议用下面这组（按用途分组）：
+
 ```
-document-comparison, diff, diff-tool, docx, pdf, ocr, fastapi, react, self-hosted, chinese
+document-comparison   document-diff    diff-tool      file-comparison
+text-diff             redlining        docx           pdf
+xlsx                  ocr              scanned-pdf    fastapi
+react                 docker           self-hosted    python
+chinese
 ```
+
+说明：
+
+- `document-comparison` / `document-diff` 是主关键词，`diff-tool` / `file-comparison` /
+  `text-diff` 是同义入口，一起挂上能覆盖不同的搜索习惯
+- `redlining`（修订稿／红线批注）是这个场景里搜索量很大但很少有人挂的词，值得占一个位置
+- `docx` / `pdf` / `xlsx` / `scanned-pdf` 让"我只想比对某个格式"的人能搜到
+- `self-hosted` / `docker` 面向想自己部署的人
+- `chinese` 面向中文用户；`python` / `react` / `fastapi` 与 GitHub 自动打的语言标签一致，留着不冲突
+- 想更窄的话可以再补 `contract-comparison`、`myers-diff`、`document-review`、`ediscovery`
 
 ## 建议的仓库名与描述行
 
