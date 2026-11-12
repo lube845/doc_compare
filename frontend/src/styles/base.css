@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Base — reset, typography, form controls, focus, scrollbars, utilities.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- buttons */
+
+/* The default button follows the reference prototype's `.btn-secondary`:
+   a soft surface, muted label and a hairline border. Larger padding is used
+   for primary actions; `.btn-sm` is reserved for the dense result header. */
+button {
+  font: inherit;
+  font-size: var(--text-md);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s var(--ease);
+}
+
+button:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.btn-sm {
+  padding: 6px 14px;
+  font-size: var(--text-sm);
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-inverse);
+  font-weight: 500;
+  box-shadow: 0 2px 8px var(--accent-shadow);
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-inverse);
+  transform: translateY(-1px);
+}
+
+button.primary:disabled:hover {
+  transform: none;
+}
+
+button.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+}
+
+button.ghost:hover:not(:disabled) {
+  background: var(--surface-sunken);
+  border-color: transparent;
+  color: var(--text);
+}
+
+button.icon-button {
+  padding: 5px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-muted);
+}
+
+button.icon-button:hover:not(:disabled) {
+  background: var(--surface-sunken);
+  color: var(--text);
+  border-color: transparent;
+}
+
+button.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft-border);
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------- forms */
+
+input,
+select,
+textarea {
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------- focus */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------- scrollbars */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ----------------------------------------------------------- utilities */
+
+.icon {
+  flex: none;
+}
+
+.subtle {
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.error {
+  color: var(--danger);
+  font-size: var(--text-sm);
+  max-width: 420px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.empty {
+  color: var(--text-faint);
+  padding: var(--space-6);
+  text-align: center;
+  font-size: var(--text-base);
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-xs);
+  padding: 1px 5px;
+  color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------- skeletons */
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(
+    90deg,
+    var(--surface-sunken) 25%,
+    var(--surface-hover) 37%,
+    var(--surface-sunken) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-soft-border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

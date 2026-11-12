@@ -1,0 +1,192 @@
+/* ==========================================================================
+   Design tokens — the single source of truth for colour, spacing, radius,
+   elevation, typography and motion. Component styles only reference these.
+
+   The light theme is the default; `[data-theme="dark"]` overrides the same
+   names so every component switches without extra rules.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ------------------------------------------------------------ surfaces */
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --surface-sunken: #f1f5f9;
+  --surface-hover: #f1f5f9;
+  --surface-inverse: #1e293b;
+
+  /* -------------------------------------------------------------- border */
+  --border: #e2e8f0;
+  --border-strong: #e2e8f0;
+  --border-accent: #bfdbfe;
+
+  /* ---------------------------------------------------------------- text */
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-faint: #94a3b8;
+  --text-inverse: #ffffff;
+
+  /* -------------------------------------------------------------- accent */
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-active: #1d4ed8;
+  --accent-soft: #dbeafe;
+  --accent-soft-border: #bfdbfe;
+  --accent-ring: rgba(59, 130, 246, 0.25);
+  --accent-shadow: rgba(59, 130, 246, 0.3);
+
+  /* -------------------------------------------- difference type colours
+     Semantic mapping required by PRD 10.1: 删除 = 红, 新增 = 绿, 修改 = 黄. */
+  --added: #22c55e;
+  --added-strong: #22c55e;
+  --added-bg: #dcfce7;
+  --added-bg-strong: #bbf7d0;
+  --added-border: #86efac;
+
+  --deleted: #ef4444;
+  --deleted-strong: #ef4444;
+  --deleted-bg: #fee2e2;
+  --deleted-bg-strong: #fecaca;
+  --deleted-border: #fca5a5;
+
+  --modified: #f59e0b;
+  --modified-strong: #f59e0b;
+  --modified-bg: #fef3c7;
+  --modified-bg-strong: #fde68a;
+  --modified-border: #fcd34d;
+
+  --moved: #06b6d4;
+  --moved-strong: #06b6d4;
+  --moved-bg: #cffafe;
+  --moved-bg-strong: #a5f3fc;
+  --moved-border: #67e8f9;
+
+  /* --------------------------------------------------------------- misc */
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --success: #22c55e;
+  --success-bg: #dcfce7;
+  --warning: #f59e0b;
+  --warning-bg: #fef3c7;
+
+  /* ------------------------------------------------------------ spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ------------------------------------------------------------- radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* ----------------------------------------------------------- elevation */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.1);
+  --shadow-focus: 0 0 0 3px var(--accent-ring);
+
+  /* ---------------------------------------------------------- typography */
+  --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+
+  /* ------------------------------------------------------------- motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration: 180ms;
+
+  /* ----------------------------------------------------------- structure */
+  --navbar-height: 56px;
+  --diff-nav-width: 260px;
+  --z-overlay: 30;
+  --z-backdrop: 40;
+  --z-drawer: 41;
+  --z-menu: 50;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-muted: #1a2234;
+  --surface-sunken: #172033;
+  --surface-hover: #1e293b;
+  --surface-inverse: #f1f5f9;
+
+  --border: #334155;
+  --border-strong: #334155;
+  --border-accent: #1d4ed8;
+
+  --text: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-faint: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent: #60a5fa;
+  --accent-hover: #3b82f6;
+  --accent-active: #2563eb;
+  --accent-soft: rgba(59, 130, 246, 0.15);
+  --accent-soft-border: rgba(96, 165, 250, 0.35);
+  --accent-ring: rgba(96, 165, 250, 0.35);
+  --accent-shadow: rgba(0, 0, 0, 0.4);
+
+  --added: #4ade80;
+  --added-strong: #22c55e;
+  --added-bg: rgba(34, 197, 94, 0.15);
+  --added-bg-strong: rgba(34, 197, 94, 0.28);
+  --added-border: rgba(34, 197, 94, 0.5);
+
+  --deleted: #f87171;
+  --deleted-strong: #ef4444;
+  --deleted-bg: rgba(239, 68, 68, 0.15);
+  --deleted-bg-strong: rgba(239, 68, 68, 0.28);
+  --deleted-border: rgba(239, 68, 68, 0.5);
+
+  --modified: #fbbf24;
+  --modified-strong: #f59e0b;
+  --modified-bg: rgba(245, 158, 11, 0.15);
+  --modified-bg-strong: rgba(245, 158, 11, 0.28);
+  --modified-border: rgba(245, 158, 11, 0.5);
+
+  --moved: #22d3ee;
+  --moved-strong: #06b6d4;
+  --moved-bg: rgba(6, 182, 212, 0.15);
+  --moved-bg-strong: rgba(6, 182, 212, 0.28);
+  --moved-border: rgba(6, 182, 212, 0.5);
+
+  --danger: #f87171;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --success: #4ade80;
+  --success-bg: rgba(34, 197, 94, 0.15);
+  --warning: #fbbf24;
+  --warning-bg: rgba(245, 158, 11, 0.15);
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+}

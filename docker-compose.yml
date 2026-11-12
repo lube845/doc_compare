@@ -1,0 +1,86 @@
+# 多格式文档比对助手 · Docker 编排
+#
+# 启动：
+#   docker compose up -d --build
+#
+# 访问：
+#   前端     http://localhost:8080
+#   接口文档 http://localhost:8000/docs
+#
+# 不安装 LibreOffice（镜像更小，DOC/WPS/ET 走兼容解析）：
+#   docker compose up -d --build   （compose 中 INSTALL_LIBREOFFICE 控制）
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: doc-compare-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-doccompare}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-doccompare}
+      POSTGRES_DB: ${POSTGRES_DB:-doccompare}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-doccompare} -d ${POSTGRES_DB:-doccompare}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - doc-compare
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      args:
+        INSTALL_LIBREOFFICE: ${INSTALL_LIBREOFFICE:-true}
+    container_name: doc-compare-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DOC_COMPARE_DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-doccompare}:${POSTGRES_PASSWORD:-doccompare}@db:5432/${POSTGRES_DB:-doccompare}
+      DOC_COMPARE_DATA_DIR: /data
+      DOC_COMPARE_MAX_UPLOAD_SIZE: ${MAX_UPLOAD_SIZE:-104857600}
+      DOC_COMPARE_CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+      TZ: Asia/Shanghai
+      # OCR（扫描件识别）· 百度通用文字识别（标准含位置版）
+      # 不配置 DOC_COMPARE_OCR_PROVIDER 时扫描件仍然拒绝参与比对
+      DOC_COMPARE_OCR_PROVIDER: ${OCR_PROVIDER:-}
+      DOC_COMPARE_BAIDU_OCR_API_KEY: ${BAIDU_OCR_API_KEY:-}
+      DOC_COMPARE_BAIDU_OCR_SECRET_KEY: ${BAIDU_OCR_SECRET_KEY:-}
+      DOC_COMPARE_BAIDU_OCR_LANGUAGE_TYPE: ${BAIDU_OCR_LANGUAGE_TYPE:-CHN_ENG}
+      DOC_COMPARE_BAIDU_OCR_DPI: ${BAIDU_OCR_DPI:-200}
+      DOC_COMPARE_BAIDU_OCR_MAX_PAGES: ${BAIDU_OCR_MAX_PAGES:-100}
+      # 「通用 HTTP 接口」是否允许指向内网地址（自建 OCR 服务）
+      # 默认关闭：只允许公网地址，避免被利用去访问云元数据或内网端口
+      DOC_COMPARE_OCR_ALLOW_PRIVATE_ENDPOINTS: ${OCR_ALLOW_PRIVATE_ENDPOINTS:-0}
+    volumes:
+      - uploads:/data
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    networks:
+      - doc-compare
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: doc-compare-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    networks:
+      - doc-compare
+
+volumes:
+  pgdata:
+  uploads:
+
+networks:
+  doc-compare:
+    driver: bridge

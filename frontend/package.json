@@ -1,0 +1,25 @@
+{
+  "name": "doc-compare-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify:docx": "node scripts/verify-docx-preview.mjs",
+    "verify:merge": "node scripts/verify-table-merge.mjs",
+    "verify:image": "node scripts/verify-image.mjs"
+  },
+  "dependencies": {
+    "docx-preview": "^0.4.1",
+    "pdfjs-dist": "^6.5.438",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^29.1.1",
+    "vite": "^5.4.11"
+  }
+}
