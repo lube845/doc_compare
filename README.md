@@ -6,8 +6,6 @@
 > **仅支持同格式比对**：两个文件的实际格式必须完全一致（DOCX↔DOCX、PDF↔PDF、XLSX↔XLSX……），
 > 格式不同的组合前端会拦截，后端返回 `400`。
 
-实现依据：[`prd.md`](prd.md)。
-
 [English](README.en.md)
 
 ## 功能特性
